@@ -23,30 +23,31 @@ fun SetupNavGraph(
             },
 
             )
-        DetailsScreenRout(onBackPressed = {navController.popBackStack()})
+        DetailsScreenRout()
 
     }
 }
+
 fun NavGraphBuilder.GridScreenRout(
-    NavigateToDetails:(String)->Unit
+    NavigateToDetails: (String) -> Unit
 ) {
     composable(route = Screens.GridScreen.route) {
 
-         GridScreen()
+        GridScreen(onItemClicked = NavigateToDetails)
 
     }
 }
 
-fun NavGraphBuilder.DetailsScreenRout(onBackPressed: () -> Unit) {
+fun NavGraphBuilder.DetailsScreenRout() {
     composable(
         route = Screens.DeatilScreen.route,
-        arguments = listOf(navArgument("gifurl"){
+        arguments = listOf(navArgument("gifurl") {
             type = NavType.StringType
             defaultValue = ""
             nullable = false
         })
     ) {
 
-        DetailScreen( url =  it.arguments?.getString("gifurl"))
+        DetailScreen(url = it.arguments?.getString("gifurl"))
     }
 }

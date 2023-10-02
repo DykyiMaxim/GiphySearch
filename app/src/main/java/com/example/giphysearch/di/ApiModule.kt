@@ -1,6 +1,7 @@
 package com.example.giphysearch.di
 
 import com.example.giphysearch.data.GiphyApiService
+import com.example.giphysearch.domain.model.ApiService.ApiService
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,6 +14,6 @@ abstract class ApiModule {
     @Binds
     @Singleton
     abstract fun bindGiphyApiService(
-        ApiService: GiphyApiService
-    ): GiphyApiService
+        apiService: GiphyApiService
+    ):ApiService
 }
