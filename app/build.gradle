@@ -1,0 +1,82 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    namespace 'com.example.giphysearch'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.example.giphysearch"
+        minSdk 33
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.6'
+    }
+}
+
+dependencies {
+
+    implementation libs.core.ktx
+    implementation libs.android.lifecycleruntimektx
+    implementation libs.kotlin.coroutines.core
+    implementation libs.android.lifecycleCompose
+    implementation libs.android.lifecycleruntimektx
+
+    implementation libs.activity.compose
+    implementation libs.bundles.composeBundle
+    implementation libs.android.lifecycleCompose
+
+    testImplementation libs.compose.junittestimpl
+    debugImplementation libs.compose.debugimplTooling
+    debugImplementation libs.compose.debugimplManifest
+    androidTestImplementation libs.androidTestImpl.extJunit
+    androidTestImplementation libs.androidTestImpl.espresso
+    androidTestImplementation libs.compose.junittestimpl
+
+
+    //Retrofit2
+    implementation libs.retrofit.core
+    implementation libs.retrofit.gson
+    //okhttp3
+    implementation libs.okhttp.core
+    implementation libs.okhttp.logging.interceptor
+
+    // Coil
+    implementation libs.staff.coil.core
+    implementation libs.staff.coil.gifPilugin
+
+
+    //Dagger-Hilt
+    implementation libs.hilt.core
+    kapt libs.hilt.coreKapt
+    implementation libs.hilt.plugin.navCompose
+}
