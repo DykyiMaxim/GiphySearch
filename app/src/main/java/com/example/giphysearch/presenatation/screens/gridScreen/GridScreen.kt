@@ -1,6 +1,5 @@
 package com.example.giphysearch.presenatation.screens.gridScreen
 
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -34,11 +33,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.giphysearch.data.ConnectionState
 import com.example.giphysearch.presenatation.components.GifFromUrl
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
@@ -52,9 +49,7 @@ fun GridScreen(
     val uistate by viewModel.uiSate.collectAsState()
     var userText by remember { mutableStateOf("") }
     var infoText by remember { mutableStateOf("Lets search for some gifs)") }
-    val connection by connectivityState()
-    val isConnected = connection === ConnectionState.Available
-    val context = LocalContext.current
+
 
     Surface {
         Box(
@@ -83,30 +78,17 @@ fun GridScreen(
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                     keyboardActions = KeyboardActions {
-                        if (isConnected) {
-                            viewModel.userSearch(userText)
-                            infoText = "Cannot find gifs for this query"
-                        } else {
-                            Toast.makeText(
-                                context,
-                                "Please turn on your internet",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
+
+                        viewModel.userSearch(userText)
+                        infoText = "Cannot find gifs for this query"
+
                     }
                 )
                 Spacer(modifier = Modifier.width(32.dp))
                 IconButton(onClick = {
-                    if (isConnected) {
-                        viewModel.userSearch(userText)
-                        infoText = "Cannot find gifs for this query"
-                    } else {
-                        Toast.makeText(
-                            context,
-                            "Please turn on your internet",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
+                    viewModel.userSearch(userText)
+                    infoText = "Cannot find gifs for this query"
+
                 },
                     content = {
                         Icon(imageVector = Icons.Filled.Search, contentDescription = null)
@@ -119,7 +101,7 @@ fun GridScreen(
                     columns = GridCells.FixedSize(100.dp),
                     modifier = Modifier.padding(top = 100.dp),
                     content = {
-                        items(25) { i ->
+                        items(uistate.data.size) { i ->
                             Box(
                                 modifier = Modifier
                                     .padding(8.dp)

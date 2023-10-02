@@ -9,9 +9,9 @@ import retrofit2.http.Query
 interface GiphyApi {
     @GET("search?")
     suspend fun getGlobalGifs(
-        @Query("api_key") api_key:String=BuildConfig.GiphyAPiKey,
+        @Query("api_key") apikey:String=BuildConfig.GiphyAPiKey,
         @Query("q") q:String,
-        @Query("limit") limit:String="25",
+        @Query("limit") limit:String="24",
         @Query("offset") offset:String="0",
         @Query("rating") rating:String="g",
         @Query("lang") lang:String="en",

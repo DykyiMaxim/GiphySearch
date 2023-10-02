@@ -1,13 +1,13 @@
 package com.example.giphysearch.data
 
-import com.example.giphysearch.domain.model.ApiService.ApiService
-import com.example.giphysearch.domain.model.ApiService.SafeResponse
+import com.example.giphysearch.domain.model.apiService.ApiService
+import com.example.giphysearch.domain.model.apiService.SafeResponse
 import com.example.giphysearch.domain.model.TrendingNetworkResponse
 import org.json.JSONObject
 import javax.inject.Inject
 
 class GiphyApiService @Inject constructor(
-    val api: GiphyApi
+    private val api: GiphyApi
 ) : ApiService {
     override suspend fun getGlobalGifs(query: String): SafeResponse<TrendingNetworkResponse> {
         val apiRequest = api.getGlobalGifs(q = query)

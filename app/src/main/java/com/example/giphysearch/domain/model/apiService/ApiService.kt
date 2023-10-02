@@ -1,4 +1,4 @@
-package com.example.giphysearch.domain.model.ApiService
+package com.example.giphysearch.domain.model.apiService
 
 
 import com.example.giphysearch.domain.model.TrendingNetworkResponse

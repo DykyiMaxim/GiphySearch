@@ -1,7 +1,7 @@
 package com.example.giphysearch.di
 
 import com.example.giphysearch.data.GiphyApiService
-import com.example.giphysearch.domain.model.ApiService.ApiService
+import com.example.giphysearch.domain.model.apiService.ApiService
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

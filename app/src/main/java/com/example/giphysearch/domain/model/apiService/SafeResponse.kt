@@ -1,4 +1,4 @@
-package com.example.giphysearch.domain.model.ApiService
+package com.example.giphysearch.domain.model.apiService
 
 sealed class SafeResponse<T>(val data: T? = null, val message: String? = null) {
     class Success<T>(data: T?): SafeResponse<T>(data)

@@ -17,7 +17,7 @@ import javax.inject.Singleton
 object AppModule {
     @Provides
     @Singleton
-    fun Api():GiphyApi {
+    fun api():GiphyApi {
         return Retrofit.Builder()
             .baseUrl("https://api.giphy.com/v1/gifs/")
             .addConverterFactory(GsonConverterFactory.create())
