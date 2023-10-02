@@ -7,8 +7,8 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.giphysearch.presenatation.screens.DetailScreen.DetailScreen
-import com.example.giphysearch.presenatation.screens.GridScreen.GridScreen
+import com.example.giphysearch.presenatation.screens.detailScreen.DetailScreen
+import com.example.giphysearch.presenatation.screens.gridScreen.GridScreen
 
 @Composable
 fun SetupNavGraph(
@@ -17,37 +17,37 @@ fun SetupNavGraph(
 
     ) {
     NavHost(navController = navController, startDestination) {
-        GridScreenRout(
-            NavigateToDetails = {
+        gridScreenRout(
+            navigateToDetails = {
                 navController.navigate(Screens.DeatilScreen.passUrl(it))
             },
 
             )
-        DetailsScreenRout()
+        detailsScreenRout()
 
     }
 }
 
-fun NavGraphBuilder.GridScreenRout(
-    NavigateToDetails: (String) -> Unit
+fun NavGraphBuilder.gridScreenRout(
+    navigateToDetails: (String) -> Unit
 ) {
     composable(route = Screens.GridScreen.route) {
 
-        GridScreen(onItemClicked = NavigateToDetails)
+        GridScreen(onItemClicked = navigateToDetails)
 
     }
 }
 
-fun NavGraphBuilder.DetailsScreenRout() {
+fun NavGraphBuilder.detailsScreenRout() {
     composable(
         route = Screens.DeatilScreen.route,
-        arguments = listOf(navArgument("gifurl") {
+        arguments = listOf(navArgument("gifUrl") {
             type = NavType.StringType
             defaultValue = ""
             nullable = false
         })
     ) {
 
-        DetailScreen(url = it.arguments?.getString("gifurl"))
+        DetailScreen(url = it.arguments?.getString("gifUrl"))
     }
 }
